@@ -5,7 +5,7 @@
     "subnet_id": "YOUR-SUBNET-ID-HERE",
     "security_group_id": "YOUR-SECURITY-GROUP-ID-HERE",
 
-    "instance_type": "t2.small",
+    "instance_type": "t2.medium",
     "region": "us-east-1",
     "source_ami": "ami-e0efab88"   
   },
@@ -41,7 +41,7 @@
       "execute_command": "echo 'admin'|sudo -S bash '{{.Path}}'",
       "scripts": [
         "scripts/base.sh",
-        "scripts/os-release.sh",
+        "scripts/os-release.sh"
         "scripts/cleanup.sh"
       ]
     }]
