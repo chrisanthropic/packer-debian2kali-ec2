@@ -7,7 +7,7 @@ An attempt at a Packer template to build an HVM Kali AMI that is identical to a 
 * AWS account
 
 ## About the AMI
-First we start with the official Debian 64 HVM AMI (https://wiki.debian.org/Cloud/AmazonEC2Image/Wheezy)[ami-e0efab88].
+First we start with the official Debian 64 HVM AMI [ami-e0efab88](https://wiki.debian.org/Cloud/AmazonEC2Image/Wheezy).
 
 Next we replace the default Debian repos with the official Kali repos.
 
@@ -27,4 +27,4 @@ Configure the variables in the kali.json template to match your needs. The first
 
 Run packer to create the AMI: `packer build kali.json`
 
-You now have a fully updated HVM Kali 1.1 AMI available in your AWS EC2 account.
+You now have a fully updated HVM Kali 1.1 AMI available in your AWS EC2 account
