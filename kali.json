@@ -41,7 +41,7 @@
       "execute_command": "echo 'admin'|sudo -S bash '{{.Path}}'",
       "scripts": [
         "scripts/base.sh",
-        "scripts/os-release.sh"
+        "scripts/os-release.sh",
         "scripts/cleanup.sh"
       ]
     }]
