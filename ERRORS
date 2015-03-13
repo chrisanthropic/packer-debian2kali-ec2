@@ -1,0 +1,27 @@
+Setting up ssl-cert (1.0.32) ...
+hostname: Name or service not known
+make-ssl-cert: Could not get FQDN, using "ip-172-30-1-207".
+make-ssl-cert: You may want to fix your /etc/hosts and/or DNS setup and run
+make-ssl-cert: make-ssl-cert generate-default-snakeoil --force-overwrite
+make-ssl-cert: again.
+
+******************************************
+
+*** WARNING: ucf was run from a maintainer script that uses debconf, but
+             the script did not pass --debconf-ok to ucf. The maintainer
+             script should be fixed to not stop debconf before calling ucf,
+             and pass it this parameter. For now, ucf will revert to using
+             old-style, non-debconf prompting. Ugh!
+
+             Please inform the package maintainer about this problem.
+
+******************************************
+
+Setting up sslh (1.13b-3.2) ...
+Adding system-user for sslh daemon
+Cannot find cached rlinetd's config files for service https, ignoring disable request
+[....] Starting ssl/ssh multiplexer: sslhsslh disabled, please adjust the configuration to your needs 
+[FAIL] and then set RUN to 'yes' in /etc/default/sslh to enable it. ... failed!
+ failed!
+
+******************************************
