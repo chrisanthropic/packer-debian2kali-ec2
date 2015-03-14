@@ -3,7 +3,7 @@
     "aws_access_key": "YOUR-ACCESS-KEY-HERE",
     "aws_secret_key": "YOUR-SECRET-KEY-HERE",
     "subnet_id": "YOUR-SUBNET-ID-HERE",
-    "security_group_id": "YOUR-SECURITY-GROUP-ID-HERE",
+    "security_group_id": "YOUR-SECURITY-GROUP-ID-HERE", 
 
     "instance_type": "t2.medium",
     "region": "us-east-1",
@@ -41,6 +41,7 @@
       "execute_command": "echo 'admin'|sudo -S bash '{{.Path}}'",
       "scripts": [
         "scripts/base.sh",
+        "scripts/grub.sh",
         "scripts/os-release.sh",
         "scripts/cleanup.sh"
       ]
