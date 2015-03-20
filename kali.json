@@ -42,7 +42,6 @@
       "scripts": [
         "scripts/base.sh",
         "scripts/grub.sh",
-        "scripts/os-release.sh",
         "scripts/cleanup.sh"
       ]
     }]
