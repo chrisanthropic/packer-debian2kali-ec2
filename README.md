@@ -15,6 +15,8 @@ Then we install the standard Kali packages you find on the official ISO.
 
 Lastly, we take care of some minor cleanup and housekeeping.
 
+The result is this public AMI - ami-c45a71ac
+
 ### Regions
 This template creates a us-east-1 AMI by default. If want to build an AMI in a different region you can edit the following lines in kali.json according to the available list [here](https://wiki.debian.org/Cloud/AmazonEC2Image/Wheezy):
 
