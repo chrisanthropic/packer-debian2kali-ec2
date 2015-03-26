@@ -36,3 +36,9 @@ Configure the variables in the kali.json template to match your needs. The first
 Run packer to create the AMI: `packer build kali.json`
 
 You now have a fully updated HVM Kali 1.1 AMI available in your AWS EC2 account. Create an instance with the AMI and SSH in with user `admin`.
+
+## AMI 
+Or, if you trust us, you can use the public AMI we created with this repo: - ami-c45a71ac
+
+## Disclaimer
+You're free to use this code however you want but I'm not responsible for anything that happens as a result. Please see the license for more details.
