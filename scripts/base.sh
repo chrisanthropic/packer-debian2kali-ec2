@@ -5,8 +5,8 @@ set -o pipefail
 
 #### Overwrite the default Debian mirrors/sources with the Kali mirrors/sources
 cat > /etc/apt/sources.list <<EOL
-deb http://http.kali.org/kali kali main non-free contrib
-deb http://security.kali.org/kali-security kali/updates main contrib non-free
+deb http://http.kali.org/kali kali-current main non-free contrib
+deb http://security.kali.org/kali-security kali-current/updates main contrib non-free
 EOL
 
 #### Download and import the official Kali Linux key
