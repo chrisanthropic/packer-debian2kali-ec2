@@ -1,6 +1,7 @@
 packer-debian2kali-ec2
 ===========
 An attempt at a Packer template to build an HVM Kali AMI that is identical to a Kali install using the official ISO.
+Newest release has been updated for `kali-rolling`, check previous release(s) for `kali-2.0`.
 
 ## Requirements
 * Packer
