@@ -7,7 +7,7 @@
 
     "instance_type": "t2.medium",
     "region": "us-east-1",
-    "source_ami": "ami-e0efab88"   
+    "source_ami": "ami-f0e7d19a"   
   },
 
   "builders": [{

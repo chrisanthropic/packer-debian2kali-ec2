@@ -5,27 +5,32 @@ set -o pipefail
 
 #### Overwrite the default Debian mirrors/sources with the Kali mirrors/sources
 cat > /etc/apt/sources.list <<EOL
-deb http://http.kali.org/kali kali-current main non-free contrib
-deb http://security.kali.org/kali-security kali-current/updates main contrib non-free
+deb http://http.kali.org/kali kali-rolling main contrib non-free
+deb-src http://http.kali.org/kali kali-rolling main contrib non-free
 EOL
+
+rm -rf /etc/apt/sources.list.d/*
 
 #### Download and import the official Kali Linux key
 wget -q -O - https://www.kali.org/archive-key.asc | gpg --import
 
-#### Update our apt db
+#### Update our apt db so we can install kali-keyring
 apt-get update
 
 #### Install the Kali keyring
 apt-get -y --force-yes install kali-archive-keyring
 
+#### Update our apt db again now that kali-keyring is installed
+apt-get update
+
 #### Preconfigure things so our install will work without any user input
 ## mysql
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password'
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password'    
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server-5.5/postrm_remove_databases boolean false'
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server-5.5/start_on_boot boolean true'
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server-5.5/nis_warning note'  
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server-5.5/really_downgrade boolean false'
+debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password_again password'
+debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password password'    
+debconf-set-selections <<< 'mysql-server-5.6 mysql-server-5.5/postrm_remove_databases boolean false'
+debconf-set-selections <<< 'mysql-server-5.6 mysql-server-5.5/start_on_boot boolean true'
+debconf-set-selections <<< 'mysql-server-5.6 mysql-server-5.5/nis_warning note'  
+debconf-set-selections <<< 'mysql-server-5.6 mysql-server-5.5/really_downgrade boolean false'
 
 ## Kismet
 debconf-set-selections <<< 'kismet kismet/install-setuid boolean false'
@@ -39,14 +44,19 @@ export DEBIAN_FRONTEND=noninteractive
 
 #### Install the base software
 ## List taken from the official Kali-live-build script at: http://git.kali.org/gitweb/?p=live-build-config.git;a=blob_plain;f=config/package-lists/kali.list.chroot;hb=HEAD
-apt-get -y --force-yes install kali-linux
-apt-get -y --force-yes install kali-desktop-live
-apt-get -y --force-yes install kali-linux-full
-apt-get -y --force-yes install kali-desktop-gnome
+apt-get -y --force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install kali-linux
+apt-get -y --force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install kali-linux-full
+apt-get -y --force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install kali-desktop-gnome
 
 #### Update to the newest version of Kali
-apt-get -y --force-yes upgrade
-apt-get -o Dpkg::Options::="--force-confnew" --force-yes -fuy dist-upgrade
+apt-get -y --force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" upgrade
+
+#### Since we're automating via force-confnew, one of the upgrades overwrites our sources.list so fix it again
+#### Overwrite the default Debian mirrors/sources with the Kali mirrors/sources
+cat > /etc/apt/sources.list <<EOL
+deb http://http.kali.org/kali kali-rolling main contrib non-free
+deb-src http://http.kali.org/kali kali-rolling main contrib non-free
+EOL
 
 #### Clean up after apt-get
 apt-get -y autoremove --purge
