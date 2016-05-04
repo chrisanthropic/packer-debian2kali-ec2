@@ -3,7 +3,8 @@
     "aws_access_key": "YOUR-ACCESS-KEY-HERE",
     "aws_secret_key": "YOUR-SECRET-KEY-HERE",
     "subnet_id": "YOUR-SUBNET-ID-HERE",
-    "security_group_id": "YOUR-SECURITY-GROUP-ID-HERE", 
+    "security_group_id": "YOUR-SECURITY-GROUP-ID-HERE",
+    "vpc_id": "YOUR-VPC-ID-HERE",
     "instance_type": "t2.medium",
     "region": "us-east-1",
     "source_ami": "ami-8e9ca3e4"   
@@ -32,7 +33,7 @@
           "device_name": "/dev/xvda",
 	  "delete_on_termination": "true"          
 	  }],
-    "vpc_id": "vpc-53bc813a",
+    "vpc_id": "{{user `vpc_id`}}",
     "associate_public_ip_address": true
   }],
   
