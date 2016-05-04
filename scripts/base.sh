@@ -13,6 +13,12 @@ rm -rf /etc/apt/sources.list.d/*
 
 #### Download and import the official Kali Linux key
 wget -q -O - https://www.kali.org/archive-key.asc | gpg --import
+gpg --keyserver pgpkeys.mit.edu --recv-key  ED444FF07D8D0BF6
+gpg -a --export ED444FF07D8D0BF6 | apt-key add -
+
+
+#### Non-interactive frontend to avoid stdin errors.
+export DEBIAN_FRONTEND=noninteractive
 
 #### Update our apt db so we can install kali-keyring
 apt-get update
