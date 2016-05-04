@@ -1,10 +1,10 @@
 {
   "variables": {
-    "aws_access_key": "AKIAI4XUJTEEFR6VUKIQ",
-    "aws_secret_key": "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",
-    "security_group_id": "sg-4f48b834", 
-    "subnet_id": "subnet-2dbc8144",
-    "instance_type": "m3.medium",
+    "aws_access_key": "YOUR-ACCESS-KEY-HERE",
+    "aws_secret_key": "YOUR-SECRET-KEY-HERE",
+    "subnet_id": "YOUR-SUBNET-ID-HERE",
+    "security_group_id": "YOUR-SECURITY-GROUP-ID-HERE", 
+    "instance_type": "t2.medium",
     "region": "us-east-1",
     "source_ami": "ami-8e9ca3e4"   
   },
