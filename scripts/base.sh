@@ -55,7 +55,7 @@ aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-con
 aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install kali-desktop-gnome
 
 #### Update to the newest version of Kali
-aptitude -y --force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" upgrade
+aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" upgrade
 
 #### Since we're automating via force-confnew, one of the upgrades overwrites our sources.list so fix it again
 #### Overwrite the default Debian mirrors/sources with the Kali mirrors/sources
