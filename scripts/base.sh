@@ -13,6 +13,12 @@ rm -rf /etc/apt/sources.list.d/*
 
 #### Download and import the official Kali Linux key
 wget -q -O - https://www.kali.org/archive-key.asc | gpg --import
+gpg --keyserver pgpkeys.mit.edu --recv-key  ED444FF07D8D0BF6
+gpg -a --export ED444FF07D8D0BF6 | apt-key add -
+
+
+#### Non-interactive frontend to avoid stdin errors with debconf.
+export DEBIAN_FRONTEND=noninteractive
 
 #### Update our apt db so we can install kali-keyring
 apt-get update
@@ -39,17 +45,17 @@ debconf-set-selections <<< 'kismet kismet/install-users string'
 ## sslh
 debconf-set-selections <<< 'sslh sslh/inetd_or_standalone select standalone'
 
-#### Prevent apt-get from asking us questions while isntalling software
-export DEBIAN_FRONTEND=noninteractive
+#### Install aptitude to automatically resolve dependency issues with the packages below.
+apt-get -y --force-yes install aptitude
 
 #### Install the base software
 ## List taken from the official Kali-live-build script at: http://git.kali.org/gitweb/?p=live-build-config.git;a=blob_plain;f=config/package-lists/kali.list.chroot;hb=HEAD
-apt-get -y --force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install kali-linux
-apt-get -y --force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install kali-linux-full
-apt-get -y --force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install kali-desktop-gnome
+aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install kali-linux
+aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install kali-linux-full
+aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install kali-desktop-gnome
 
 #### Update to the newest version of Kali
-apt-get -y --force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" upgrade
+aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" upgrade
 
 #### Since we're automating via force-confnew, one of the upgrades overwrites our sources.list so fix it again
 #### Overwrite the default Debian mirrors/sources with the Kali mirrors/sources

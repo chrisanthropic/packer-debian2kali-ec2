@@ -6,4 +6,4 @@ debconf-set-selections <<< 'grub-installer grub-installer/with_other_os boolean 
 debconf-set-selections <<< 'grub-pc grub-pc/install_devices multiselect /dev/xvda'
 
 # Install grub2
-apt-get -y --force-yes install grub2
+aptitude -y install grub2
